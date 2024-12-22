@@ -1,6 +1,6 @@
-using Plots            # To use plot
-using GaussQuadrature  # To use legendre
-using SparseArrays     # To use spzeros
+using Plots
+using GaussQuadrature
+using SparseArrays
 using BenchmarkTools
 using .Threads
 using LinearAlgebra
