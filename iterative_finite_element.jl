@@ -5,6 +5,7 @@ using BenchmarkTools
 using .Threads
 using LinearAlgebra
 
+
 function gauss_jacobi(A::AbstractMatrix{T}, b::AbstractVector{T}, tol::T, max_iter::Int=10000000) where T<:Real
   n = length(b)
   x = zeros(n)  # Initial guess
@@ -46,6 +47,7 @@ function gauss_jacobi(A::AbstractMatrix{T}, b::AbstractVector{T}, tol::T, max_it
   return x_new
 end
 
+
 function gauss_jacobi_parallel(A::AbstractMatrix{T}, b::AbstractVector{T}, tol::T, max_iter::Int=10000000) where T<:Real
   n = length(b)
   x = zeros(n)
@@ -71,6 +73,7 @@ function gauss_jacobi_parallel(A::AbstractMatrix{T}, b::AbstractVector{T}, tol::
 
   return x_new
 end
+
 
 function gauss_jacobi_tridiagonal(A::AbstractMatrix{T}, b::AbstractVector{T}, tol::T, max_iter::Int=10000000) where T<:Real
   n = length(b)
@@ -101,6 +104,7 @@ function gauss_jacobi_tridiagonal(A::AbstractMatrix{T}, b::AbstractVector{T}, to
   return x_new
 end
 
+
 function gauss_jacobi_tridiagonal_parallel(A::AbstractMatrix{T}, b::AbstractVector{T}, tol::T, max_iter::Int=10000000) where T<:Real
   n = length(b)
   x = zeros(n)
@@ -126,6 +130,7 @@ function gauss_jacobi_tridiagonal_parallel(A::AbstractMatrix{T}, b::AbstractVect
   return x_new
 end
 
+
 function gauss_seidel(A::AbstractMatrix{T}, b::AbstractVector{T}, tol::T, max_iter::Int=10000000) where T<:Real
   n = size(A, 1)
   x = zeros(n)
@@ -148,6 +153,7 @@ function gauss_seidel(A::AbstractMatrix{T}, b::AbstractVector{T}, tol::T, max_it
 
   return x
 end
+
 
 function gauss_seidel_tridiagonal(A::AbstractMatrix{T}, b::AbstractVector{T}, tol::T, max_iter::Int=10000000) where T<:Real
   n = length(b)
@@ -182,9 +188,6 @@ function gauss_seidel_tridiagonal(A::AbstractMatrix{T}, b::AbstractVector{T}, to
 end
 
 
-
-
-
 # Approximates the Integral of a given function in the interval [-1:1]
 function gaussian_quadrature(f, ngp)
 
@@ -199,6 +202,7 @@ function gaussian_quadrature(f, ngp)
   return sum
 end
 
+
 # Initializes the LG matrix
 function init_LG_matrix(ne)
   LG = zeros(Int, 2,ne)
@@ -210,6 +214,7 @@ function init_LG_matrix(ne)
 
   return LG
 end
+
 
 # Initializes the EQ vector and the m variable
 function init_EQ_vector_and_m(ne)
@@ -230,6 +235,7 @@ function init_EQ_vector_and_m(ne)
 
   return EQ, m
 end
+
 
 # Initializes the K matrix
 function init_K_matrix(ne, EQ, LG, alpha, beta, gamma, m)
@@ -266,6 +272,7 @@ function init_K_matrix(ne, EQ, LG, alpha, beta, gamma, m)
   return K[1:m, 1:m]
 end
 
+
 # Initializes the F vector
 function init_F_vector(f, ne, EQ, LG, m)
 
@@ -297,20 +304,24 @@ function init_F_vector(f, ne, EQ, LG, m)
   return F[1:m]
 end
 
+
 # Generalized phi function
 function phi(number, qsi)
   return [((1 - qsi) / 2), ((1 + qsi) / 2)][number]
 end
+
 
 # Generalized derivative of the phi function
 function d_phi(number, qsi)
   return [(-1 / 2), (1 / 2)][number]
 end
 
+
 # Converts the interval from [x_i-1 , xi+1] to [-1, 1]
 function qsi_to_x(qsi, i, h)
   return (h / 2) * (qsi + 1) + 0 + (i - 1)*h
 end
+
 
 function solve_system(ne, alpha, beta, gamma, f, u, solver, tol)
   # Initializing matrices, vectors and variables
@@ -320,6 +331,7 @@ function solve_system(ne, alpha, beta, gamma, f, u, solver, tol)
   F     = init_F_vector(f, ne, EQ, LG, m)
   return solver(K, F, tol)
 end
+
 
 # Plots the exact and inexact graphs, as well as the absolute and relative errors
 function plot_comparison(ne, alpha, beta, gamma, f, u, solver, tol)
@@ -339,6 +351,7 @@ function plot_comparison(ne, alpha, beta, gamma, f, u, solver, tol)
   # Saving the graph
   savefig("approximation-graph.png")
 end
+
 
 # Plots the graph of errors according to the varying of n
 function error_analysis(lb, ub, method, name, tol)
@@ -387,6 +400,7 @@ function error_analysis(lb, ub, method, name, tol)
 end
 
 
+# Compares different methods in solving the FEM system
 function compare_methods_in_solving_system_varying_ne(lb, ub, alpha, beta, gamma, f, u, methods, names, markershapes, tols)
   nes = [2^i for i in lb:ub]
   n = length(names)
@@ -476,7 +490,6 @@ ub = 4
 tolerance = [0; 1e-4; 1e-5; 1e-6; 1e-7; 1e-8; 1e-9; 1e-10; 1e-12; 1e-13;]
 
 
-
+# Result of the implementation
 compare_methods_in_error_convergence(lb, ub, methods, names, tolerance)
-
 compare_methods_in_solving_system_varying_ne(lb, ub, alpha, beta, gamma, f, u, methods, names, markershapes, tolerance)
