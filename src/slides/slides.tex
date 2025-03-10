@@ -1,0 +1,50 @@
+\documentclass[10pt]{beamer}
+
+% >8--------------------------------------Packages-------------------------------------8<
+
+% Language
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Images
+\usepackage{graphicx}
+\usepackage{float}
+
+% Formatting
+\usetheme{Darmstadt}
+\usepackage{geometry}
+\geometry{left=0.4cm, right=0.4cm}
+\usepackage{csquotes}
+\usepackage{amsmath, amssymb}
+\usepackage{upquote}
+\usepackage{listings}
+\usepackage{hyperref}
+
+% Bibliography
+\usepackage[style=numeric, backend=biber]{biblatex}
+\addbibresource{repertoire.bib}
+\graphicspath{{figures/}}
+% >8--------------------------------------Packages-------------------------------------8<
+
+% >8------------------------------------Title-info-------------------------------------8<
+\title{Resolvendo EDOs com Sistemas Matriz-vetor utilizando Métodos Iterativos}
+\subtitle{Trabalho Final de Computação Científica e Análise de Dados}
+\author{João Victor Lopez Pereira}
+\institute{Instituto de Computação -- UFRJ}
+\date{\today}
+% >8------------------------------------Title-info-------------------------------------8<
+
+\begin{document}
+
+  \frame{\titlepage}
+
+  \input{content.tex}
+
+  \begin{frame}
+    \frametitle{Referências}
+    \nocite{*}
+    \printbibliography
+  \end{frame}
+
+\end{document}

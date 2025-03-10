@@ -1,0 +1,114 @@
+%->8-------------------------------------------------------------------------------------------8<-%
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%->8-------------------------------------------------------------------------------------------8<-%
+
+%->8-------------------------------------------------------------------------------------------8<-%
+\usepackage{graphicx}
+\usepackage{float}
+%->8-------------------------------------------------------------------------------------------8<-%
+
+%->8-------------------------------------------------------------------------------------------8<-%
+\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{repertoire.bib}
+\graphicspath{{figures/}}
+%->8-------------------------------------------------------------------------------------------8<-%
+
+%->8-------------------------------------------------------------------------------------------8<-%
+\usepackage{cancel}
+\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{fancyvrb}
+\usepackage{upquote}
+\usepackage{indentfirst}
+\usepackage{listings}
+\setlength{\parskip}{\baselineskip}
+\setlength{\footnotesep}{0.8em}
+\setlength{\skip\footins}{2em}
+\setlength{\cftbeforechapskip}{12pt}
+\setlength{\cftbeforesecskip}{6pt}
+\setlength{\jot}{10pt}
+%->8-------------------------------------------------------------------------------------------8<-%
+
+%->8-------------------------------------------------------------------------------------------8<-%
+\title{
+  Trabalho Final de Computação \\
+  Científica e Análise de Dados\\
+  \vspace{1cm}
+  Resolução do Problema Estacionário \\
+  com Condições de Dirichlet \\
+  via o Método dos Elementos Finitos \\
+  Utilizando Métodos Iterativos
+}
+
+\date{
+  \today\\
+  \vfill
+  Rio de Janeiro - RJ
+}
+
+\author{
+  João Victor Lopez Pereira
+}
+%->8-------------------------------------------------------------------------------------------8<-%
+
+
+%->8-------------------------------------------------------------------------------------------8<-%
+\lstnewenvironment{code}[1][]{
+  \lstset{
+    basicstyle=\ttfamily,
+    columns=flexible,
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=none,
+    basewidth=0.5em,
+    aboveskip=13pt,
+    belowskip=0pt,
+    #1
+  }
+}{}
+
+\lstnewenvironment{styledoutput}[1][]{
+  \lstset{
+    basicstyle=\ttfamily\itshape,
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=none,
+    aboveskip=0pt,
+    #1
+  }
+}{}
+
+\newcommand{\userinput}[1]{
+  \noindent
+  \texttt{\textit{>}}
+  \texttt{#1}
+}
+
+\newcommand{\useroutput}[1]{
+  \textit{\texttt{#1}}
+}
+
+\newcommand{\excerpt}[4]{                 % {frase}{autor}{fonte}{cite}
+  \vspace{25pt}
+  \begin{quote}
+    \begin{center}
+      \hfill
+      \begin{minipage}{0.65\textwidth}
+        ``#1''
+
+        \vspace{5pt}---#2, \\
+        \textit{``#3''}#4
+      \end{minipage}
+    \end{center}
+  \end{quote}
+  \vspace{25pt}
+}
+
+\newcommand{\var}[1]{\texttt{#1}}
+\newcommand{\nonport}[1]{\textit{#1}}
+%->8-------------------------------------------------------------------------------------------8<-%
